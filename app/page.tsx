@@ -1,122 +1,181 @@
-import Image from "next/image";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  // Mock data for categories and jobs
+  // Purely static display data for visual presentation
   const categories = [
-    { name: "Tech & Dev", count: "100+ Jobs", icon: "💻" },
-    { name: "Design & Creative", count: "82+ Jobs", icon: "🎨" },
-    { name: "Marketing & Sales", count: "70+ Jobs", icon: "📈" },
-    { name: "Remote Support", count: "97+ Jobs", icon: "🎧" },
+    { name: "Software Engineering", desc: "Build the future of the web.", icon: "💻", color: "text-blue-400", bg: "bg-blue-500/10" },
+    { name: "Product Design", desc: "Shape intuitive user experiences.", icon: "🎨", color: "text-purple-400", bg: "bg-purple-500/10" },
+    { name: "Growth Marketing", desc: "Scale innovative tech brands.", icon: "📈", color: "text-amber-400", bg: "bg-amber-500/10" },
+    { name: "Customer Success", desc: "Empower global communities.", icon: "🤝", color: "text-emerald-400", bg: "bg-emerald-500/10" },
   ];
 
-  const featuredJobs = [
-    { id: 1, title: "Senior Frontend Engineer", company: "Linear Tech", type: "Remote", salary: "$120k - $140k" },
-    { id: 2, title: "Product Designer", company: "Stripe", type: "Hybrid (NYC)", salary: "$110k - $130k" },
-    { id: 3, title: "Growth Marketing Lead", company: "Vercel", type: "Remote", salary: "$95k - $115k" },
+  const steps = [
+    { id: "01", title: "Discover", desc: "Browse curated collections of top-tier opportunities." },
+    { id: "02", title: "Evaluate", desc: "Review transparent salaries, tech stacks, and remote policies." },
+    { id: "03", title: "Connect", desc: "Reach out directly to hiring teams with your portfolio." },
+  ];
+
+  const reviews = [
+    { id: 1, name: "Sarah Jenkins", role: "Product Designer", text: "Sereno completely changed how I look for roles. The aesthetic and the curation are unmatched. I found my dream position in days.", initial: "S" },
+    { id: 2, name: "David Chen", role: "Frontend Engineer", text: "Finally, a platform that understands what modern developers actually care about. No clutter, just premium opportunities.", initial: "D" },
+    { id: 3, name: "Elena Rodriguez", role: "Growth Lead", text: "The cleanest interface I've ever used. It feels less like a job board and more like a high-end portfolio.", initial: "E" },
+    { id: 4, name: "Marcus Johnson", role: "UX Researcher", text: "I love the focus on transparency and design. It sets a new standard for how we should connect with companies.", initial: "M" },
+    { id: 5, name: "Amira Patel", role: "Full Stack Dev", text: "Sereno's curation saved me hours of scrolling through irrelevant listings. Truly a game-changer.", initial: "A" },
+    { id: 6, name: "Liam Smith", role: "Product Manager", text: "A breath of fresh air in the tech industry. The user experience is phenomenal.", initial: "L" },
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50 relative overflow-x-hidden">
+    <main className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-emerald-500/30">
       
-      {/* HERO SECTION */}
-      <section className="relative h-screen w-full overflow-hidden">
-        <video 
-          loop
-          autoPlay
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        > 
-          <source src="/bg.mp4" type="video/mp4"/>
-          Your browser does not support the video tag
-        </video>
+      {/* 1. HERO SECTION */}
+      <section className="relative min-h-[90vh] w-full flex flex-col justify-center items-center px-4 overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute top-0 left-0 w-full h-full z-0" id="1">
+          <video loop autoPlay muted playsInline className="w-full h-full object-cover"> 
+            <source src="/bg.mp4" type="video/mp4"/>
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-slate-950/80 to-slate-950 z-10" />
+        </div>
       
-        {/* Hero Overlay Content */}
-        <div className="bg-black/60 absolute top-0 left-0 h-full w-full text-white flex items-center justify-center px-4">
-          <div className="w-full max-w-4xl mx-auto flex flex-col items-center gap-6 text-center">
-            
-            <h1 className="text-2xl md:text-6xl font-bold tracking-tight max-w-3xl leading-tight">
-              <span className="text-emerald-400">Sereno</span> - Where Your Potential Meets Your Next Passion.
-            </h1>
-            
-            <p className="font-light text-base md:text-lg max-w-2xl text-slate-200">
-              Skip the endless search. Match with top employers hiring right now based on your unique skills, values, and career goals.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto mt-4">
-              <Link 
-                href="/jobs" 
-                className="w-full sm:w-auto px-8 py-3 bg-emerald-500 hover:bg-emerald-600 font-medium text-white rounded-lg transition-colors text-center"
-              >
-                Explore Openings
-              </Link>
-              <Link 
-                href="/signup" 
-                className="w-full sm:w-auto px-8 py-3 bg-white/10 hover:bg-white/20 font-medium text-white border border-white/30 backdrop-blur-sm rounded-lg transition-colors text-center"
-              >
-                Create Account
-              </Link>
-            </div>
+        {/* Hero Content */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center text-center gap-8 pt-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-sm font-medium text-emerald-400 mb-4">
+            <span className="relative flex h-2 w-2">
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Curated Career Paths
+          </div>
 
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight max-w-4xl leading-[1.1]">
+            Where Your Potential Meets Your Next <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Passion.</span>
+          </h1>
+          
+          <p className="font-light text-lg md:text-2xl max-w-2xl text-slate-300">
+            A showcase of modern tech opportunities. Elevate your career with transparent, premium roles.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto mt-4">
+            <Link 
+              href="/jobs" 
+              className="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition-all shadow-[0_0_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_0_60px_-15px_rgba(16,185,129,0.7)] text-center text-lg"
+            >
+              Explore Sectors
+            </Link>
+            <Link 
+              href="/about" 
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 font-semibold text-white border border-white/10 backdrop-blur-md rounded-xl transition-all text-center text-lg"
+            >
+              Our Mission
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* JOB CATEGORIES SECTION */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900">Explore by Category</h2>
-          <p className="text-slate-500 mt-2">Find your niche and jump straight into open opportunities.</p>
+      {/* 2. SOCIAL PROOF TICKER */}
+      <section className="py-10 border-b border-slate-800/50 bg-slate-950/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-center text-sm font-medium text-slate-500 uppercase tracking-widest mb-6">Featured Ecosystems</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            <span className="text-xl font-bold text-white tracking-wider">VERCEL</span>
+            <span className="text-xl font-bold text-white tracking-wider">STRIPE</span>
+            <span className="text-xl font-bold text-white tracking-wider">LINEAR</span>
+            <span className="text-xl font-bold text-white tracking-wider">NOTION</span>
+            <span className="text-xl font-bold text-white tracking-wider">FIGMA</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. HOW IT WORKS */}
+      <section id="about" className="py-24 px-4 max-w-7xl mx-auto relative">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">The Sereno Experience.</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat, index) => (
-            <div key={index} className="p-6 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col items-start gap-3 group">
-              <span className="text-3xl bg-slate-100 p-3 rounded-lg group-hover:bg-emerald-50 transition-colors">{cat.icon}</span>
-              <div>
-                <h3 className="font-semibold text-slate-800 text-lg">{cat.name}</h3>
-                <p className="text-slate-500 text-sm mt-0.5">{cat.count}</p>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          {steps.map((step, idx) => (
+            <div key={idx} className="p-8 rounded-3xl bg-slate-900 border border-slate-800 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
+              <div className="text-6xl font-black text-slate-800/50 absolute -top-4 -right-4 group-hover:text-emerald-900/20 transition-colors">{step.id}</div>
+              <h3 className="text-xl font-bold text-white mb-3 relative z-10">{step.title}</h3>
+              <p className="text-slate-400 relative z-10 leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* FEATURED JOBS SECTION */}
-      <section className="py-20 bg-slate-100 px-4">
+      {/* 4. EXPLORE CATEGORIES */}
+      <section id="categories" className="py-24 px-4 bg-slate-900 border-y border-slate-800">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900">Featured Opportunities</h2>
-              <p className="text-slate-500 mt-2">Handpicked roles active within the last 24 hours.</p>
-            </div>
-            <Link href="/jobs" className="text-emerald-600 hover:text-emerald-700 font-medium inline-flex items-center gap-1 group">
-              View All Jobs <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
+          <div className="mb-12 text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Explore by Category</h2>
+            <p className="text-slate-400 mt-2 text-lg">Disciplines shaping the modern web.</p>
           </div>
 
-          <div className="flex flex-col gap-4">
-            {featuredJobs.map((job) => (
-              <div key={job.id} className="p-6 bg-white rounded-xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-emerald-200 transition-colors">
-                <div>
-                  <h3 className="font-semibold text-slate-900 text-lg">{job.title}</h3>
-                  <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 mt-1">
-                    <span className="font-medium text-slate-700">{job.company}</span>
-                    <span>•</span>
-                    <span>{job.type}</span>
-                    <span>•</span>
-                    <span className="text-emerald-600 font-medium">{job.salary}</span>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((cat, index) => (
+              <div key={index} className="p-6 bg-slate-950 rounded-2xl border border-slate-800 hover:border-slate-600 transition-all flex flex-col items-start gap-4 group">
+                <div className={`p-4 rounded-xl ${cat.bg} ${cat.color} text-3xl group-hover:scale-110 transition-transform`}>
+                  {cat.icon}
                 </div>
-                <Link href={`/jobs/${job.id}`} className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-md text-sm text-center font-medium transition-colors">
-                  Apply Now
-                </Link>
+                <div>
+                  <h3 className="font-bold text-white text-lg">{cat.name}</h3>
+                  <p className="text-slate-500 text-sm mt-1">{cat.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* 5. FLOATING REVIEWS (Wall of Love) */}
+      <section className="py-32 px-4 max-w-7xl mx-auto relative overflow-hidden">
+        {/* Background glow for the review section */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="text-center mb-20 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Stories of alignment.</h2>
+          <p className="text-slate-400 text-lg">Hear from professionals who found their passion here.</p>
+        </div>
+
+        {/* Staggered Grid to create the "Floating" effect */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 pb-12">
+          {reviews.map((review, index) => (
+            <div 
+              key={review.id} 
+              // The magic logic for the floating look: pushes the middle column down on desktop, and adds a smooth hover lift.
+              className={`p-8 bg-slate-900 border border-slate-800 rounded-3xl hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-500/30 transition-all duration-300 ${
+                index % 3 === 1 ? 'lg:translate-y-12' : ''
+              }`}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-emerald-400 font-bold text-xl border border-slate-700">
+                  {review.initial}
+                </div>
+                <div>
+                  <h4 className="font-bold text-white">{review.name}</h4>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider">{review.role}</p>
+                </div>
+              </div>
+              <p className="text-slate-300 leading-relaxed italic">
+                &quot;{review.text}&quot;
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 6. BOTTOM BANNER */}
+      <section className="py-24 px-4 relative overflow-hidden border-t border-slate-800">
+        <div className="absolute inset-0 bg-emerald-500/5" />
+        <div className="max-w-4xl mx-auto relative z-10 text-center bg-slate-900/50 border border-emerald-500/20 p-12 md:p-20 rounded-3xl backdrop-blur-sm">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Designed for the Modern Web</h2>
+          <p className="text-slate-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto">This project demonstrates clean architecture, responsive flex layouts, and premium UI design patterns.</p>
+          <Link href="#1" className="inline-block px-10 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition-all shadow-lg text-lg">
+            Back to Top
+          </Link>
+        </div>
+      </section>
+
     </main>
   );
 }

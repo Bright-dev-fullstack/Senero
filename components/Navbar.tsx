@@ -47,7 +47,7 @@ export default function Navbar(){
             name: "Post Job",
             url: "/post"
         },
-        ...(!session  ? [{ name: "SignUp", url: "/signup", }]: []  )
+        ...(!session  ? [{ name: "Signin", url: "/signin", }]: []  )
     ]
     return(
         <main className="flex items-center justify-between shadow-md py-2 max-md:px-3 md:px-7 bg-white sticky top-0 z-50">

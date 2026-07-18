@@ -1,6 +1,9 @@
+"use client"
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Footer() {
+  const {data: session} = useSession()
   return (
     <footer className="bg-slate-950 text-slate-400 py-16 px-4 border-t border-slate-800">
       <div className="max-w-7xl mx-auto">
@@ -67,7 +70,14 @@ export default function Footer() {
           </div>
           
           <div className="flex gap-6">
-            <Link href="/signup" className="hover:text-slate-300 transition-colors">Candidate Account</Link>
+            {
+              !session ? (
+              <Link href="/signin" className="hover:text-slate-300 transition-colors">Candidate Account</Link>
+
+              ):(
+                <span></span>                
+              )
+            }
             <span className="text-slate-800">|</span>
             <Link href="/jobs" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
           </div>
