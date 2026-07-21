@@ -152,7 +152,7 @@ export default async function SignIn() {
           {/* BOTTOM UTILITY ROUTE LINK */}
           <div className="mt-6 text-center text-sm">
             <span className="text-slate-400">Don&apos;t have an account? </span>
-            <Link href="/signup" className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+            <Link href="#" className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
               Sign up
             </Link>
           </div>

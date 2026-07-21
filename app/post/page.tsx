@@ -5,7 +5,7 @@ import { auth } from "@/auth";
 export default async function  Post(){
         const session = await auth()
         if (!session){
-          redirect("/signup")
+          redirect("/signin")
         }
     return(
         <main>
