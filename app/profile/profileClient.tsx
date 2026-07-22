@@ -5,8 +5,8 @@ import { db, storage } from "@/config/firebase";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { GoArrowUpRight } from "react-icons/go";
-import { FiEdit3, FiLogOut, FiGlobe, FiCamera, FiX, FiBriefcase } from "react-icons/fi";
-import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { FiEdit3, FiLogOut, FiGlobe, FiCamera, FiX, FiBriefcase, FiTrash2 } from "react-icons/fi";
+import { collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where, deleteDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 interface userProfile {
@@ -39,7 +39,6 @@ export default function ProfileClient({ session }: { session: any }) {
   const [upLoading, setUpLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Renamed from apis to jobs
   const [myJobs, setMyJobs] = useState<JobsDoc[]>([]);
   const [loadingJobs, setLoadingJobs] = useState(true);
 
@@ -93,7 +92,6 @@ export default function ProfileClient({ session }: { session: any }) {
     async function loadMyJobs() {
       if (!uid) return;
       try {
-        // Changed collection to "jobs"
         const q = query(collection(db, "jobs"), where("uid", "==", uid), orderBy("timestamp", "desc"));
         const snapshot = await getDocs(q);
         const results: JobsDoc[] = snapshot.docs.map((doc) => ({
@@ -109,6 +107,19 @@ export default function ProfileClient({ session }: { session: any }) {
     }
     loadMyJobs();
   }, [uid]);
+
+  // ---- Delete job function ----
+  async function handleDeleteJob(postId: string) {
+    if (!confirm("Are you sure you want to delete this job posting?")) return;
+    try {
+      await deleteDoc(doc(db, "jobs", postId));
+      // Remove from state instantly
+      setMyJobs((prev) => prev.filter((job) => job.postId !== postId));
+    } catch (error) {
+      console.error("Error deleting job:", error);
+      alert("Failed to delete the job posting. Please try again.");
+    }
+  }
 
   async function handleSave() {
     if (!uid) return;
@@ -316,10 +327,20 @@ export default function ProfileClient({ session }: { session: any }) {
               {myJobs.map((job) => (
                 <div key={job.postId} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/40 transition-all group">
                   <div>
-                    <div className="flex justify-between items-start mb-3">
+                    {/* Card Top Header: Timestamp & Delete Button */}
+                    <div className="flex justify-between items-center mb-3">
                       <span className="text-xs font-medium text-slate-400 bg-slate-950 px-3 py-1 rounded-full border border-slate-800">
                         {job.timestamp || "Recent"}
                       </span>
+
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleDeleteJob(job.postId)}
+                        className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
+                        title="Delete Job"
+                      >
+                        <FiTrash2 className="w-4 h-4" />
+                      </button>
                     </div>
 
                     <h3 className="font-bold text-lg text-white group-hover:text-emerald-400 transition-colors mb-1 line-clamp-1">
