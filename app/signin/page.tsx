@@ -111,8 +111,9 @@ export default async function SignIn() {
                   type="email"
                   autoComplete="email"
                   required
+                  disabled
                   placeholder="you@example.com"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors shadow-inner"
+                  className="disabled:cursor-not-allowed w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors shadow-inner"
                 />
               </div>
             </div>
@@ -122,7 +123,7 @@ export default async function SignIn() {
                 <label htmlFor="password" className="block text-sm font-medium text-slate-300">
                   Password
                 </label>
-                <Link href="#" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
+                <Link href="#" className="cursor-not-allowed text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
                   Forgot password?
                 </Link>
               </div>
@@ -133,8 +134,9 @@ export default async function SignIn() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  disabled
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors shadow-inner"
+                  className="disabled:cursor-not-allowed w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors shadow-inner"
                 />
               </div>
             </div>
@@ -142,7 +144,8 @@ export default async function SignIn() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full py-3 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm rounded-xl transition-colors shadow-lg shadow-emerald-500/20 focus:outline-none"
+                disabled
+                className="disabled:cursor-not-allowed w-full py-3 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm rounded-xl transition-colors shadow-lg shadow-emerald-500/20 focus:outline-none"
               >
                 Sign In
               </button>
@@ -152,7 +155,7 @@ export default async function SignIn() {
           {/* BOTTOM UTILITY ROUTE LINK */}
           <div className="mt-6 text-center text-sm">
             <span className="text-slate-400">Don&apos;t have an account? </span>
-            <Link href="#" className="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+            <Link href="#" className="cursor-not-allowed font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
               Sign up
             </Link>
           </div>

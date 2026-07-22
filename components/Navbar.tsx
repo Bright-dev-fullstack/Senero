@@ -100,7 +100,7 @@ export default function Navbar(){
             <Link href={"/profile"}>Profile</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-            <Link href={"/setting"}>Settings</Link>
+            {/* <Link href={"/setting"}>Settings</Link> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
             <button onClick={() => signOut()}>Sign Out</button>
