@@ -99,9 +99,9 @@ export default function Navbar(){
         <MenuItem onClick={handleClose}>
             <Link href={"/profile"}>Profile</Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}> */}
             {/* <Link href={"/setting"}>Settings</Link> */}
-        </MenuItem>
+        {/* </MenuItem> */}
         <MenuItem onClick={handleClose}>
             <button onClick={() => signOut()}>Sign Out</button>
         </MenuItem>
