@@ -79,7 +79,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
             <span className="text-xl font-bold text-white tracking-wider">VERCEL</span>
             <span className="text-xl font-bold text-white tracking-wider">STRIPE</span>
-            <span className="text-xl font-bold text-white tracking-wider">LINEAR</span>
+            <span className="text-xl font-bold text-white tracking-wider">FIVERR</span>
             <span className="text-xl font-bold text-white tracking-wider">NOTION</span>
             <span className="text-xl font-bold text-white tracking-wider">FIGMA</span>
           </div>
